@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fodrász Időpontfoglaló</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/booking.css">
+  <link rel="stylesheet" href="styles/admin.css">
+</head>
+<body>
+  <div id="hairSalonList"></div>
+  <div id="bookingModal" style="display:none;">
+    <div id="modalContent">
+      <span onclick="closeBooking()">X</span>
+      <h3>Foglalás Fodrász Fruzsinál</h3>
+      <input type="date" id="bookingDate">
+      <div id="availableTimes">
+        <!-- Itt listázzuk ki a szabad időpontokat -->
+      </div>
+      <button onclick="confirmBooking()">Lefoglalom</button>
+    </div>
+  </div>
+  
+  <!-- Admin panel helye -->
+  <div id="adminPanel" style="display: none;"></div>
+
+  <script src="src/index.js"></script>
+  <script src="src/booking.js"></script>
+  <script src="src/admin.js"></script>
+</body>
+</html>
