@@ -1,52 +1,41 @@
-"use strict";
-
-// Importáljuk a hairSalonData adatokat a data.ts-ből
-import { hairSalonData } from './data.js';
-
-// A fodrászok listájának renderelése
+var _a;
+// render.ts
+import { hairSalonData } from './data';
 export const renderHairStylists = (hairSalonData) => {
-  const container = document.getElementById('hairSalonList');
-  container.innerHTML = ''; // Ürítjük a tartalmat, ha van
-
-  hairSalonData.forEach((stylist) => {
-    const stylistCard = document.createElement('div');
-    stylistCard.className = 'stylist-card';
-    stylistCard.innerHTML = `
+    const container = document.getElementById('hairSalonList');
+    container.innerHTML = '';
+    hairSalonData.forEach((stylist) => {
+        const stylistCard = document.createElement('div');
+        stylistCard.className = 'stylist-card';
+        stylistCard.innerHTML = `
       <h2>${stylist.neve}</h2>
       <button onclick="openBooking(${stylist.id})">Időpontfoglalás</button>
     `;
-    container.appendChild(stylistCard);
-  });
+        container.appendChild(stylistCard);
+    });
 };
-
-// A booking funkciókhoz is hozzájáruló kódokat hozhatsz létre
-
-
-// A foglalás megnyitása a kiválasztott fodrászhoz
 export const openBooking = (stylistId) => {
-  const stylist = hairSalonData.find((s) => s.id === stylistId);
-  const bookingModal = document.getElementById('bookingModal');
-  const bookingDetails = document.getElementById('bookingDetails');
-  bookingModal.style.display = 'block';
-  bookingDetails.innerHTML = `
-    <h3>Időpontfoglalás ${stylist ? stylist.neve : ''}</h3>
+    const stylist = hairSalonData.find((s) => s.id === stylistId);
+    const bookingModal = document.getElementById('bookingModal');
+    const bookingDetails = document.getElementById('bookingDetails');
+    bookingModal.style.display = 'block';
+    bookingDetails.innerHTML = `
+    <h3>Időpontfoglalás ${stylist === null || stylist === void 0 ? void 0 : stylist.neve}</h3>
     <ul>
-      ${stylist ? stylist.nyitvatartas.map((time) => `
+      ${stylist === null || stylist === void 0 ? void 0 : stylist.nyitvatartas.map((time) => `
         <li>
           ${time.nap}: ${time.tol} - ${time.ig}
           <button onclick="bookTime('${time.nap}', '${time.tol}')">Foglalás</button>
-        </li>`).join('') : ''}
+        </li>`).join('')}
     </ul>
   `;
 };
-
-// Időpont foglalása
 export const bookTime = (nap, ora) => {
-  alert(`Sikeres foglalás: ${nap} ${ora}`);
-  // Itt frissítheted a foglalásokat, pl. egy adatbázisban
+    alert(`Sikeres foglalás: ${nap} ${ora}`);
+    // Frissítjük a foglalásokat
+    // Itt a foglalásokat az adatbázisban is frissíthetjük
 };
-
-// Modál bezárása
-document.getElementById('closeModal')?.addEventListener('click', () => {
-  document.getElementById('bookingModal').style.display = 'none';
+// Törlés a modálról
+(_a = document.getElementById('closeModal')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', () => {
+    document.getElementById('bookingModal').style.display = 'none';
 });
