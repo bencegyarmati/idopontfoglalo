@@ -1,4 +1,5 @@
-export const renderAdminPanel = () => {
+export const displayAdminPanel = () => {
+    console.log('Admin panel megjelenítése');
     const hairSalonData = JSON.parse(localStorage.getItem('hairSalon') || '[]');
     const tableBody = document.getElementById('appointmentList')!;
   
