@@ -6,7 +6,8 @@ import { hairSalonData } from './data.js';
 // A fodrászok listájának renderelése
 export const renderHairStylists = (hairSalonData) => {
   const container = document.getElementById('hairSalonList');
-  container.innerHTML = '';
+  container.innerHTML = ''; // Ürítjük a tartalmat, ha van
+
   hairSalonData.forEach((stylist) => {
     const stylistCard = document.createElement('div');
     stylistCard.className = 'stylist-card';
@@ -17,6 +18,9 @@ export const renderHairStylists = (hairSalonData) => {
     container.appendChild(stylistCard);
   });
 };
+
+// A booking funkciókhoz is hozzájáruló kódokat hozhatsz létre
+
 
 // A foglalás megnyitása a kiválasztott fodrászhoz
 export const openBooking = (stylistId) => {
