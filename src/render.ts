@@ -1,5 +1,5 @@
 // render.ts
-import { openBooking } from './booking';
+import { closeModal, openBooking } from './booking';
 import { hairSalonData } from './data';
 
 export const renderHairStylists = (hairSalonData: any) => {
@@ -61,5 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
       openBooking(stylistId);
     });
   });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const closeModalButton = document.getElementById('closeModal');
+  closeModalButton?.addEventListener('click', closeModal);
 });
 

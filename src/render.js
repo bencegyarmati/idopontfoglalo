@@ -1,5 +1,6 @@
 var _a;
 // render.ts
+import { closeModal, openBooking } from './booking.js';
 import { hairSalonData } from './data.js';
 export const renderHairStylists = (hairSalonData) => {
     const container = document.getElementById('hairSalonList');
@@ -9,12 +10,12 @@ export const renderHairStylists = (hairSalonData) => {
         stylistCard.className = 'stylist-card';
         stylistCard.innerHTML = `
       <h2>${stylist.neve}</h2>
-      <button onclick="openBooking(${stylist.id})">Időpontfoglalás</button>
+      <button class="booking-button" data-id="${stylist.id}">Időpontfoglalás</button>
     `;
         container.appendChild(stylistCard);
     });
 };
-export const openBooking = (stylistId) => {
+export const openBookingModal = (stylistId) => {
     const stylist = hairSalonData.find((s) => s.id === stylistId);
     const bookingModal = document.getElementById('bookingModal');
     const bookingDetails = document.getElementById('bookingDetails');
@@ -38,4 +39,19 @@ export const bookTime = (nap, ora) => {
 // Törlés a modálról
 (_a = document.getElementById('closeModal')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', () => {
     document.getElementById('bookingModal').style.display = 'none';
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('hairSalonList');
+    const buttons = container.querySelectorAll('.booking-button');
+    buttons.forEach((button) => {
+        button.addEventListener('click', (event) => {
+            const target = event.target;
+            const stylistId = Number(target.dataset.id);
+            openBooking(stylistId);
+        });
+    });
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const closeModalButton = document.getElementById('closeModal');
+    closeModalButton === null || closeModalButton === void 0 ? void 0 : closeModalButton.addEventListener('click', closeModal);
 });

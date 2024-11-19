@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="styles/booking.css">
   <link rel="stylesheet" href="styles/admin.css">
+  <link rel="icon" href="path/to/favicon.ico" type="image/x-icon">
 </head>
 <body>
 
@@ -16,9 +17,12 @@
   <div id="hairSalonList"></div>  
 
   <!-- A foglalási modál -->
-  <div id="bookingModal" style="display:none;">
-    <div id="modalContent">           
-      <span onclick="closeBooking()">X</span>
+  <div id="bookingModal" style="display: none;">
+    <div id="modalContent">
+      <span id="closeModal">X</span>
+      <div id="bookingDetails"></div>
+    </div>
+  </div>
       <h3>Foglalás Fodrász Fruzsinál</h3>
       <input type="date" id="bookingDate">
       <div id="availableTimes"></div>
@@ -29,7 +33,19 @@
   
   
   <!-- Admin panel -->
-  <div id="adminPanel" style="display: none;"></div>
+  <div id="adminPanel" style="display: none;">
+    <table>
+      <thead>
+        <tr>
+          <th>Fodrász</th>
+          <th>Vendég</th>
+          <th>Dátum</th>
+          <th>Óra</th>
+        </tr>
+      </thead>
+      <tbody id="appointmentList"></tbody>
+    </table>
+  </div>
 
   <script type="module" src="src/index.js"></script>
   <script type="module" src="src/booking.js"></script>
