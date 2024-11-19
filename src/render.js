@@ -1,6 +1,6 @@
 var _a;
 // render.ts
-import { hairSalonData } from './data';
+import { hairSalonData } from './data.js';
 export const renderHairStylists = (hairSalonData) => {
     const container = document.getElementById('hairSalonList');
     container.innerHTML = '';

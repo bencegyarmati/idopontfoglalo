@@ -1,4 +1,5 @@
 // render.ts
+import { openBooking } from './booking';
 import { hairSalonData } from './data';
 
 export const renderHairStylists = (hairSalonData: any) => {
@@ -10,13 +11,14 @@ export const renderHairStylists = (hairSalonData: any) => {
     stylistCard.className = 'stylist-card';
     stylistCard.innerHTML = `
       <h2>${stylist.neve}</h2>
-      <button onclick="openBooking(${stylist.id})">Időpontfoglalás</button>
+      <button class="booking-button" data-id="${stylist.id}">Időpontfoglalás</button>
     `;
     container.appendChild(stylistCard);
-  });
-};
+    });
+  };
 
-export const openBooking = (stylistId: number) => {
+
+export const openBookingModal = (stylistId: number) => {
   const stylist = hairSalonData.find((s) => s.id === stylistId);
   const bookingModal = document.getElementById('bookingModal')!;
   const bookingDetails = document.getElementById('bookingDetails')!;
@@ -49,3 +51,15 @@ document.getElementById('closeModal')?.addEventListener('click', () => {
     document.getElementById('bookingModal')!.style.display = 'none';
   });
   
+document.addEventListener('DOMContentLoaded', () => {
+  const container = document.getElementById('hairSalonList')!;
+  const buttons = container.querySelectorAll('.booking-button');
+  buttons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement;
+      const stylistId = Number(target.dataset.id);
+      openBooking(stylistId);
+    });
+  });
+});
+

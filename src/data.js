@@ -20,3 +20,5 @@ export const hairSalonData = [
         idopontfoglals: [],
     },
 ];
+
+
