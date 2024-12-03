@@ -1,7 +1,7 @@
-import { renderHairStylists } from './render';
-import { hairSalonData } from './data';
-import { openBooking } from './booking';
-import { displayAdminPanel } from './admin';
+import { renderHairStylists } from './render.js';
+import { hairSalonData } from './data.js';
+import { openBooking } from './booking.js';
+import { displayAdminPanel } from './admin.js';
 
 
 const localHairSalonData = JSON.parse(localStorage.getItem('hairSalon') || '[]');

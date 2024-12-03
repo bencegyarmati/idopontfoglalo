@@ -12,9 +12,16 @@ export const openBooking = (stylistId) => {
     <h3>Foglalás ${stylist.neve} számára</h3>
     <label for="date">Dátum:</label>
     <input type="date" id="date" />
-    <button onclick="confirmBooking(${stylistId})">Lefoglalom</button>
-    <button onclick="closeModal()">Mégse</button>
+    <button id="confirmBookingBtn">Lefoglalom</button>
+    <button id="closeModalBtn">Mégse</button>
   `;
+    // Eseménykezelők hozzáadása
+    document
+        .getElementById('confirmBookingBtn')
+        .addEventListener('click', () => confirmBooking(stylistId));
+    document
+        .getElementById('closeModalBtn')
+        .addEventListener('click', closeModal);
 };
 export const closeModal = () => {
     const modal = document.getElementById('bookingModal');
@@ -32,7 +39,12 @@ export const confirmBooking = (stylistId) => {
     if (!stylist)
         return;
     // Új foglalás hozzáadása
-    stylist.idopontfoglals.push({ datum: selectedDate, nev: 'Vendég neve', ora: '10:00' }); // Példaként 10:00-ra állítjuk
+    stylist.idopontfoglals = stylist.idopontfoglals || [];
+    stylist.idopontfoglals.push({
+        datum: selectedDate,
+        nev: 'Vendég neve', // Tesztadat, amit a felhasználótól is kérhetsz.
+        ora: '10:00', // Alapértelmezett időpont.
+    });
     localStorage.setItem('hairSalon', JSON.stringify(hairSalonData));
     alert('A foglalás sikeresen megtörtént!');
     closeModal();

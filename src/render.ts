@@ -1,6 +1,6 @@
 // render.ts
-import { closeModal, openBooking } from './booking';
-import { hairSalonData } from './data';
+import { closeModal, openBooking } from './booking.js';
+import { hairSalonData } from './data.js';
 
 export const renderHairStylists = (hairSalonData: any) => {
   const container = document.getElementById('hairSalonList')!;

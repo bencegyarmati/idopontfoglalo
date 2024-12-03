@@ -1,7 +1,7 @@
 // import { confirmBooking } from './index';
 
 export const openBooking = (stylistId: number) => {
-    console.log(`Stylist ${stylistId} foglalása.`);
+  console.log(`Stylist ${stylistId} foglalása.`);
   const hairSalonData = JSON.parse(localStorage.getItem('hairSalon') || '[]');
   const stylist = hairSalonData.find((s: any) => s.id === stylistId);
 
@@ -15,9 +15,18 @@ export const openBooking = (stylistId: number) => {
     <h3>Foglalás ${stylist.neve} számára</h3>
     <label for="date">Dátum:</label>
     <input type="date" id="date" />
-    <button onclick="confirmBooking(${stylistId})">Lefoglalom</button>
-    <button onclick="closeModal()">Mégse</button>
+    <button id="confirmBookingBtn">Lefoglalom</button>
+    <button id="closeModalBtn">Mégse</button>
   `;
+
+  // Eseménykezelők hozzáadása
+  document
+    .getElementById('confirmBookingBtn')!
+    .addEventListener('click', () => confirmBooking(stylistId));
+
+  document
+    .getElementById('closeModalBtn')!
+    .addEventListener('click', closeModal);
 };
 
 export const closeModal = () => {
@@ -26,24 +35,28 @@ export const closeModal = () => {
 };
 
 export const confirmBooking = (stylistId: number) => {
-    const dateInput = document.getElementById('date') as HTMLInputElement;
-    const selectedDate = dateInput.value;
-  
-    if (!selectedDate) {
-      alert('Kérjük, válasszon dátumot!');
-      return;
-    }
-  
-    const hairSalonData = JSON.parse(localStorage.getItem('hairSalon') || '[]');
-    const stylist = hairSalonData.find((s: any) => s.id === stylistId);
-  
-    if (!stylist) return;
-  
-    // Új foglalás hozzáadása
-    stylist.idopontfoglals.push({ datum: selectedDate, nev: 'Vendég neve', ora: '10:00' }); // Példaként 10:00-ra állítjuk
-    localStorage.setItem('hairSalon', JSON.stringify(hairSalonData));
-  
-    alert('A foglalás sikeresen megtörtént!');
-    closeModal();
-  };
-  
+  const dateInput = document.getElementById('date') as HTMLInputElement;
+  const selectedDate = dateInput.value;
+
+  if (!selectedDate) {
+    alert('Kérjük, válasszon dátumot!');
+    return;
+  }
+
+  const hairSalonData = JSON.parse(localStorage.getItem('hairSalon') || '[]');
+  const stylist = hairSalonData.find((s: any) => s.id === stylistId);
+
+  if (!stylist) return;
+
+  // Új foglalás hozzáadása
+  stylist.idopontfoglals = stylist.idopontfoglals || [];
+  stylist.idopontfoglals.push({
+    datum: selectedDate,
+    nev: 'Vendég neve', // Tesztadat, amit a felhasználótól is kérhetsz.
+    ora: '10:00',       // Alapértelmezett időpont.
+  });
+  localStorage.setItem('hairSalon', JSON.stringify(hairSalonData));
+
+  alert('A foglalás sikeresen megtörtént!');
+  closeModal();
+};
