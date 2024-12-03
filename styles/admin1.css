@@ -1,0 +1,49 @@
+/* Admin panel stílusai */
+#adminPanel {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  #adminPanel table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #fff;
+  }
+  
+  #adminPanel th {
+    background-color: #4CAF50;
+    color: white;
+    text-align: left;
+    padding: 10px;
+  }
+  
+  #adminPanel td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #adminPanel tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  #adminPanel tr:hover {
+    background-color: #ddd;
+  }
+  
+  /* Fejléc gomb stílusa */
+  #adminPanelButton {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #adminPanelButton:hover {
+    background-color: #45a049;
+  }
+  

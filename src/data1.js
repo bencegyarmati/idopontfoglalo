@@ -1,4 +1,3 @@
-// data.ts
 export const hairSalonData = [
     {
         id: 1,
